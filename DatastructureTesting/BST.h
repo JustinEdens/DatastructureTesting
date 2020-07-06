@@ -20,7 +20,6 @@ private:
 	}node;
 
 	node* root;
-	void add(node* n, node* root);
 	void print(node* p);
 };
 
@@ -160,26 +159,29 @@ void BST<T>::add(T value) {
 		root = n;
 	}
 	else {
-		add(n, root);
-	}
-}
-
-template <typename T>
-void BST<T>::add(node* n, node* root) {
-	if (root->data > n->data) {
-		if (root->left != NULL) {
-			add(n, root->left);
-		}
-		else {
-			root->left = n;
-		}
-	}
-	else if (root->data < n->data) {
-		if (root->right != NULL) {
-			add(n, root->right);
-		}
-		else {
-			root->right = n;
+		node* p = root;
+		//while for finding node where the new item should be added
+		while (true) {
+			if (value > p->data) {
+				if (p->right != NULL) {
+					p = p->right;
+				}
+				else {
+					//spot found
+					p->right = n;
+					return;
+				}
+			}
+			else if (value < p->data) {
+				if (p->left != NULL) {
+					p = p->left;
+				}
+				else {
+					//spot found
+					p->left = n;
+					return;
+				}
+			}
 		}
 	}
 }

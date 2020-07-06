@@ -68,6 +68,21 @@ int main()
     cout << "BST ADD: " << duration << "sec" << endl;
     cout << endl;
 
+    //searching Vector
+    cout << "Searching Vector" << endl;
+    r = rand() % size;
+    start = clock();
+
+    vector<int>::iterator vFind;
+    vFind = find(vec.begin(), vec.end(), r);
+
+    duration = ((double)clock() - (double)start) / (double)CLOCKS_PER_SEC;
+    cout << "Vector Search: " << duration << "sec" << endl;
+    cout << endl;
+
+    //searching Linked
+    //Searching BST
+
     //delete from Vector
     cout << "Removing from Vector" << endl;
     r = rand() % size;
