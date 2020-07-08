@@ -9,6 +9,7 @@ public:
 	~BST();
 	void add(T value);
 	void remove(T value);
+	T find(T value);
 	void print();
 	bool isEmpty();
 protected:
@@ -144,6 +145,32 @@ void BST<T>::remove(T value) {
 			delete target;
 		}
 		return;
+	}
+}
+
+template <typename T>
+T BST<T>::find(T value) {
+	node* p = root;
+	while (true) {
+		if (p->data == value) {
+			return p->data;
+		}
+		else if (value > p->data) {
+			if (p->right != NULL) {
+				p = p->right;
+			}
+			else {
+				return NULL;
+			}
+		}
+		else if (value < p->data) {
+			if (p->left != NULL) {
+				p = p->left;
+			}
+			else {
+				return NULL;
+			}
+		}
 	}
 }
 

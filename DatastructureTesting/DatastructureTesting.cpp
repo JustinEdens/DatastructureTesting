@@ -81,7 +81,26 @@ int main()
     cout << endl;
 
     //searching Linked
+    cout << "Searching Linked List" << endl;
+    r = rand() % size;
+    start = clock();
+
+    int linkedSearch = linked.find(r);
+
+    duration = ((double)clock() - (double)start) / (double)CLOCKS_PER_SEC;
+    cout << "Linked List Search: " << duration << "sec" << endl;
+    cout << endl;
+
     //Searching BST
+    cout << "Searching BST" << endl;
+    r = rand() % size;
+    start = clock();
+
+    int bstSearch = bst.find(r);
+
+    duration = ((double)clock() - (double)start) / (double)CLOCKS_PER_SEC;
+    cout << "BST Search: " << duration << "sec" << endl;
+    cout << endl;
 
     //delete from Vector
     cout << "Removing from Vector" << endl;

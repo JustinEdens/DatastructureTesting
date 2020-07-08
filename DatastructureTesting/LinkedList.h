@@ -9,6 +9,7 @@ public:
 	~LinkedList();
 	void add(T value);
 	void remove(T value);
+	T find(T value);
 	void print();
 	bool isEmpty();
 protected:
@@ -31,9 +32,7 @@ LinkedList<T>::LinkedList() {
 template <typename T>
 LinkedList<T>::~LinkedList() {
 	while (head != NULL) {
-		node* p = head;
-		head = head->next;
-		remove(p->data);
+		remove(head->data);
 	}
 	printf("LinkedList Destroyed!!!");
 }
@@ -44,38 +43,34 @@ void LinkedList<T>::remove(T value) {
 	if (isEmpty()) {
 		return;
 	}
+	node* p = head;
+	node* prev = head;
+	while (p != NULL) {
+		if (value == p->data) {
+			break;
+		}
+		else {
+			prev = p;
+			p = p->next;
+		}
+	}
+	if (p == NULL) return;
 	//check head
-	if (head->data == value) {
-		node* p = head;
+	if (p == head) {
 		head = head->next;
 		delete p;
 		return;
 	}
-	//check rest
-	node* prev = head;
-	node* cur = head->next;
-	while (cur != NULL) {
-		if (cur->data == value) {
-			break;
-		}
-		cur = cur->next;
-		prev = prev->next;
-	}
-	//cur is on value or null
-	//if value is not in list
-	if (cur == NULL)
-		return;
 	//if value is tail
-	if (cur == tail) {
+	if (p == tail) {
 		tail = prev;
 		tail->next = NULL;
-		delete cur;
+		delete p;
 		return;
 	}
 	//if value is between head and tail
-	prev->next = cur->next;
-	cur->next = NULL;
-	delete cur;
+	prev->next = p->next;
+	delete p;
 	return;
 
 }
@@ -94,6 +89,22 @@ void LinkedList<T>::add(T value) {
 		tail->next = n;
 		tail = n;
 	}
+}
+
+template <typename T>
+T LinkedList<T>::find(T value) {
+	if (isEmpty()) return NULL;
+	node* p = head;
+	while (p != NULL) {
+		if (value == p->data) {
+			return p->data;
+		}
+		else {
+			p = p->next;
+		}
+	}
+	//not found
+	return NULL;
 }
 
 template <typename T>
