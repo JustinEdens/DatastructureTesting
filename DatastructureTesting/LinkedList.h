@@ -34,7 +34,6 @@ LinkedList<T>::~LinkedList() {
 	while (head != NULL) {
 		remove(head->data);
 	}
-	printf("LinkedList Destroyed!!!");
 }
 
 template <typename T>

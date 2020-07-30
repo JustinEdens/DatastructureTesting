@@ -34,7 +34,6 @@ BST<T>::~BST() {
 	while (!isEmpty()) {
 		remove(root->data);
 	}
-	printf("BST Destroyed!!!");
 }
 
 template <typename T>
